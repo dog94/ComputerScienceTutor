@@ -34,13 +34,14 @@ class Solution(object):
         if((G-E)*(H-F)==0):
             return (A-C)*(B-D)
             
-        # No Overlapping
+        # when there is no overlapping
         if(max(A,C)<min(E,G) or max(E,G)<min(A,C) or max(B,D)<min(H,F)or max(H,F)<min(B,D)):
             return ((A-C)*(B-D) + (G-E)*(H-F))
             
+        # when they overlap, find the 2 points in the middle that define the inner rectangle
         x=[A,C,E,G]
         y=[B,D,F,H]
         x.sort()
         y.sort()
-        
+        #subtract the overlapped area
         return (G-E)*(H-F)+(A-C)*(B-D)-(x[2]-x[1])*(y[2]-y[1])
